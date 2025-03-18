@@ -1,0 +1,28 @@
+name: my_wallet
+description: "Es un gestor de gastos personales que te permite llevar un control de tus ingresos y egresos de manera sencilla y rápida."
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.6.1
+
+dependencies:
+  provider: ^6.0.5
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+  # To add assets to your application, add an assets section, like this:
+    
+  assets:
+    - assets/images/
+  #   - images/a_dot_burr.jpeg
+  #   - images/a_dot_ham.jpeg
+ 
