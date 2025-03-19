@@ -111,7 +111,7 @@ class LoginButton extends StatelessWidget {
         backgroundColor: authProvider.validateCredentials()
             ? const Color(0xFF04703C) // Ensure color is visible when enabled
             : Colors.grey, // Disabled button color
-        padding: const EdgeInsets.symmetric(horizontal: 130, vertical: 2),
+        padding: const EdgeInsets.symmetric(horizontal: 130, vertical: 12),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),
@@ -239,7 +239,7 @@ class LoginScreen extends StatelessWidget {
         body: Column(
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.only(top: 90, bottom: 60),
+              padding: const EdgeInsets.only(top: 30, bottom: 60),
               child: Column(
                 children: [
                   const Logo(),
