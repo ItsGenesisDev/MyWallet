@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 import 'providers/auth_provider.dart';
 import 'views/login/login_view.dart';
 
-void main() {
-  runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => AuthProvider()),
-      ],
-      child: const MyApp(),
-    ),
-  );
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(); // Inicializa Firebase
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -19,13 +15,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'My Wallet',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => AuthProvider()),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'My Wallet',
+        theme: ThemeData(primarySwatch: Colors.green),
+        home: const LoginScreen(),
       ),
-      home: const LoginScreen(),
     );
   }
 }

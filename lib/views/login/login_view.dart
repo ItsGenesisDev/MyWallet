@@ -205,7 +205,7 @@ class LoginFields extends StatelessWidget {
     return Column(
       children: [
         Padding( // Añade Padding al campo de correo
-          padding: const EdgeInsets.symmetric(horizontal: 30.0), // Ajusta el valor horizontal
+          padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0), // Ajusta el valor horizontal
           child: CustomTextField(
             labelText: 'Email',
             onChanged: authProvider.setEmail,
@@ -213,7 +213,7 @@ class LoginFields extends StatelessWidget {
         ),
         const SizedBox(height: 20),
         Padding( // Añade Padding al campo de contraseña
-          padding: const EdgeInsets.symmetric(horizontal: 30.0), // Ajusta el valor horizontal
+          padding: const EdgeInsets.symmetric(horizontal: 20.0), // Ajusta el valor horizontal
           child: CustomTextField(
             labelText: '🔒︎Contraseña',
             obscureText: true,
@@ -250,7 +250,7 @@ class LoginScreen extends StatelessWidget {
             Expanded(
               child: Container(
                 width: MediaQuery.of(context).size.width,
-                padding: const EdgeInsets.symmetric(vertical: 30.0, horizontal: 12.0),
+                padding: const EdgeInsets.symmetric(vertical: 60.0, horizontal: 12.0),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.vertical(top: Radius.circular(20.0)),
