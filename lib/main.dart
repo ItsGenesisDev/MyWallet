@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+//import 'package:my_wallet/views/home/home_view.dart';
 import 'package:provider/provider.dart';
 import 'providers/auth_provider.dart';
 import 'views/login/login_view.dart';
@@ -23,7 +24,8 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'My Wallet',
         theme: ThemeData(primarySwatch: Colors.green),
-        home: const LoginScreen(),
+        home: const LoginScreen(),        
+        //home: const HomeView(),
       ),
     );
   }

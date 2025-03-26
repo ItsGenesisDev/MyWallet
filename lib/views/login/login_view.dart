@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_wallet/views/home/home_view.dart';
 import 'package:provider/provider.dart';
 import '../../providers/auth_provider.dart';
 
@@ -264,11 +265,37 @@ class LoginScreen extends StatelessWidget {
                         // Add logic for "Forgot Password" action
                       }),
                       const SizedBox(height: 20),
-                      LoginButton(onPressed: () {}),
+                      LoginButton(onPressed: () async {
+                        final authProvider = Provider.of<AuthProvider>(context, listen: false);
+                        final user = await authProvider.signInWithEmailAndPassword();
+                        if (user != null) {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(builder: (context) => HomeView()),
+                          );
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text('Error al iniciar sesión')),
+                          );
+                        }
+                      }),
                       const SizedBox(height: 20),
                       const CustomDivider(),
                       const SizedBox(height: 10),
-                      GoogleButton(onPressed: () {}),
+                      GoogleButton(onPressed: () async {
+                        final authProvider = Provider.of<AuthProvider>(context, listen: false);
+                        final user = await authProvider.signInWithGoogle();
+                        if (user != null) {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(builder: (context) => HomeView()),
+                          );
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text('Error al iniciar sesión con Google')),
+                          );
+                        }
+                      }),
                       const SizedBox(height: 5),
                       Row( // Usamos Row para separar los textos
                         mainAxisAlignment: MainAxisAlignment.center,

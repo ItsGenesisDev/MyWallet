@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthProvider with ChangeNotifier {
   String _email = '';
@@ -46,6 +47,29 @@ class AuthProvider with ChangeNotifier {
       return userCredential.user;
     } catch (e) {
       print('Error en el inicio de sesión: $e');
+      return null;
+    }
+  }
+
+  Future<User?> signInWithGoogle() async {
+    try {
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+      if (googleUser == null) {
+        // El usuario canceló el inicio de sesión
+        return null;
+      }
+
+      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+
+      final AuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+
+      UserCredential userCredential = await _firebaseAuth.signInWithCredential(credential);
+      return userCredential.user;
+    } catch (e) {
+      print('Error en el inicio de sesión con Google: $e');
       return null;
     }
   }
